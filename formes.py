@@ -1,6 +1,6 @@
 import turtle as t
 
-
+#exercice 3
 def drawforme(anglestart, cotes, longueur, nombre, couleur) :
     t.right(anglestart)
     angle = 360/cotes
@@ -56,7 +56,7 @@ def drawchaine(deltaangle, deltataille, couleur1, couleur2, nombre) :
         t.pendown()
         drawstar(angle, taille, 1, couleur2)
         t.penup()
-        t.forward(taille*2)
+        t.forward(taille)
 
         taille += deltataille
 
@@ -66,4 +66,4 @@ def drawchaine(deltaangle, deltataille, couleur1, couleur2, nombre) :
 
 if __name__ =='__main__' :
     #drawstar(0, 500, 1, 'red')
-    drawchaine(60, 10, 'red', 'blue', 30)
+    drawchaine(60, 5, 'red', 'blue', 60)
