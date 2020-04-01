@@ -1,25 +1,23 @@
 import turtle as t
 
 #exercice 3
-def drawforme(anglestart, cotes, longueur, nombre, couleur) :
+def drawforme(cotes, longueur, couleur) :
 
     angle = 360/cotes
-    n = 0
     t.color(couleur)
 
-    while n < nombre :
-        for i in range(cotes) :
-            t.pendown()
-            t.forward(longueur)
-            t.right(angle)
+    for i in range(cotes) :
+        t.pendown()
+        t.forward(longueur)
+        t.right(angle)
 
-        n+=1
 
-def drawstar(anglestart, longueur, nombre, couleur) :
+
+def drawstar(longueur, nombre, couleur) :
 
     for i in range(nombre) :
 
-        drawforme(anglestart, 3, longueur, 1, couleur)
+        drawforme(3, longueur, couleur)
 
         t.penup()
         t.forward(longueur/3)
@@ -28,8 +26,8 @@ def drawstar(anglestart, longueur, nombre, couleur) :
         t.right(120)
         t.pendown()
 
-        drawforme(180, 3, longueur,1,  couleur)
-        t.left(360/3)
+        drawforme(3, longueur, couleur)
+        #t.left(360/3)
 
         # t.penup()
         # t.right(360/3)
@@ -47,11 +45,11 @@ def drawchaine(deltaangle, deltataille, couleur1, couleur2, nombre) :
     angle = 0
     n = 0
     while n < nombre :
-        drawforme(angle, 4, taille, 1, couleur1)
+        drawforme(4, taille, couleur1)
         t.penup()
         t.forward(taille*2)
         t.pendown()
-        drawstar(angle, taille, 1, couleur2)
+        drawstar(taille, 1, couleur2)
         t.penup()
         t.forward(taille*2)
 
@@ -62,5 +60,7 @@ def drawchaine(deltaangle, deltataille, couleur1, couleur2, nombre) :
 
 
 if __name__ =='__main__' :
-    #drawstar(0, 500, 1, 'red')
-    drawchaine(60, 5, 'red', 'blue', 60)
+    #drawstar(100, 10, 'red')
+    drawchaine(60, 5, 'red', 'blue', 15)
+    t.done()
+    #drawforme(4, 50, 'red')
