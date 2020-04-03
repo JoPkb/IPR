@@ -1,30 +1,25 @@
 from Formes import *
 import turtle as t
-
+t.speed(20)
 for n in range(2) :
     for i in range(3) :
-        if n == 0 :
-            triangle_equilateral(250,'black')
-        elif n == 1 :
-            triangle_equilateral(250, 'black')
+        triangle_equilateral(250, 'black')
     t.left(60)
 t.forward(250)
 t.right(60)
 
+#Dessin des 6 triangles entourant les 6 premiers.
 for a in range(6) :
     if a % 2 == 0 :
-        t.fillcolor('yellow')
-        t.color('yellow')
+        color = '#8267E5'
     else :
-        t.fillcolor('purple')
-        t.color('purple')
+        color = '#DEA759'
+
     t.begin_fill()
-    t.forward(250)
-    t.right(120)
-    t.forward(250)
-    t.right(120)
-    t.forward(250)
+    triangle_equilateral(250, color)
     t.end_fill()
+
+#Placement au bon point de départ pour le prochain triangle
     t.right(180)
     t.forward(250)
 

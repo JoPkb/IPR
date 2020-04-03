@@ -1,5 +1,5 @@
 import turtle as t
-
+t.speed(20)
 #exercice 3
 def drawforme(cotes, longueur, couleur) :
 
