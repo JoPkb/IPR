@@ -51,4 +51,4 @@ if __name__ == '__main__' :
     #nombre = input('nombre')
 
     #forme(int(cotes), int(longueur), int(nombre))
-    etoile(300)
+    #etoile(300)
