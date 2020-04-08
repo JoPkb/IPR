@@ -14,12 +14,15 @@ def intervertir(dic):
     return dicFinal
 
 
+
 def compteSeq(seq) :
-    lettres = {'A' : 0, 'T' : 0, 'C' : 0, 'G' : 0}
+    lettres = {}
     for nt in seq :
         lettres[nt] = lettres.get(nt, 0) + 1
-
+        #le nucléotide = 0 si c'est la première fois qu'il apparaît
+        #ou valeur +1 
     return lettres
+
 
 
 def compteCodon(seq) :
@@ -30,7 +33,12 @@ def compteCodon(seq) :
     return codons
 
 
+
+
+
 if __name__ == '__main__' :
+
+#================================MENU================================#
 
     choix = int(input("1 pour l'exo 1, 2 pour le 2, 3 pour le 3 :\n"))
 
