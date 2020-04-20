@@ -13,12 +13,6 @@ def comprime(data) :
         if wdict[n] == wdict[n+1] :
             listef.remove(wdict[n])
 
-
-
-
-
-
-
     return listef
 
 

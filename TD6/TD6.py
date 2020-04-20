@@ -4,11 +4,8 @@ def intervertir(dic):
     dicFinal = {}
 
     for item in dic.items() :
-        listKeyToValue.append(item[0])
-        listValueToKey.append(item[1])
 
-    for newValue, newKey in zip(listKeyToValue, listValueToKey) :
-        dicFinal[newKey] = newValue
+        dicFinal[item[1]] = item[0]
 
 
     return dicFinal
@@ -20,7 +17,7 @@ def compteSeq(seq) :
     for nt in seq :
         lettres[nt] = lettres.get(nt, 0) + 1
         #le nucléotide = 0 si c'est la première fois qu'il apparaît
-        #ou valeur +1 
+        #ou valeur +1
     return lettres
 
 
