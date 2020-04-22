@@ -55,28 +55,38 @@ def traduction(seq) :
 
     code_genetique = {'uuu': 'F', 'ucu': 'S', 'uau': 'Y', 'ugu': 'C','uuc': 'F', 'ucc': 'S', 'uac': 'Y', 'ugc': 'C','uua': 'L', 'uca': 'S', 'uaa': '*', 'uga': '*','uug': 'L', 'ucg': 'S', 'uag': '*', 'ugg': 'W','cuu': 'L', 'ccu': 'P', 'cau': 'H', 'cgu': 'R','cuc': 'L', 'ccc': 'P', 'cac': 'H', 'cgc': 'R','cua': 'L', 'cca': 'P', 'caa': 'Q', 'cga': 'R','cug': 'L', 'ccg': 'P', 'cag': 'Q', 'cgg': 'R','auu': 'I', 'acu': 'T', 'aau': 'N', 'agu': 'S','auc': 'I', 'acc': 'T', 'aac': 'N', 'agc': 'S','aua': 'I', 'aca': 'T', 'aaa': 'K', 'aga': 'R','aug': 'M', 'acg': 'T', 'aag': 'K', 'agg': 'R','guu': 'V', 'gcu': 'A', 'gau': 'D', 'ggu': 'G','guc': 'V', 'gcc': 'A', 'gac': 'D', 'ggc': 'G','gua': 'V', 'gca': 'A', 'gaa': 'E', 'gga': 'G','gug': 'V', 'gcg': 'A', 'gag': 'E', 'ggg': 'G',}
     aa = ''
-    cadre = int(input('Entrez le cadre de lecture :0, 1 ou 2 :  '))
+    cadre = 0
 
-    if cadre != 0 and cadre != 1 and cadre != 2 :
-        raise ValueError
+    #if cadre != 0 and cadre != 1 and cadre != 2 :
+        #raise ValueError
 
     seq = ADN2ARN(seq)
     for i in range(cadre, len(seq)-len(seq)%3, 3) :
         aa += code_genetique[seq[i:i+3]]
 
 
-    return (aa, len(aa))
+    return (aa,len(aa))
 
 
+def find_ORF(liste_aa) :
+    start = liste_aa.index('M')
+    stop = liste_aa[start:].index('*')
 
+    ORF = liste_aa[start:stop]
+    print(start, stop)
+    return ORF
 
 if __name__ == '__main__' :
     a = time.time()
-    seq = create_seq(3000000)
+    #seq = 'uuuauguugcugugagccaugcuaguauaa'
+    seq = create_seq(1000)
     trad = traduction(seq)
     print(trad[0],'\nlen :\n', trad[1])
+
+    print(find_ORF(trad[0]),'\n')
     b = time.time()
     print(b-a)
+
     # seq = 'atgagtgaacgtctgagcattaccccgctggggccgtatatcggcgca'
     # print(pourcentGC(composition(seq)))
     # print(temp_fusion_howley(composition(seq)))
