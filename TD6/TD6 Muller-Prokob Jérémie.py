@@ -31,7 +31,7 @@ def compteCodon(seq) :
 
 
 
-
+#Sélection de la fonction à tester :
 
 if __name__ == '__main__' :
 
