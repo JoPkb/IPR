@@ -87,8 +87,8 @@ if __name__ == '__main__' :
     b = time.time()
     print(b-a)
 
-    # seq = 'atgagtgaacgtctgagcattaccccgctggggccgtatatcggcgca'
-    # print(pourcentGC(composition(seq)))
-    # print(temp_fusion_howley(composition(seq)))
-    #
-    # print(est_complementaire('acg', 'aca'))
+    seq = 'atgagtgaacgtctgagcattaccccgctggggccgtatatcggcgca'
+    print(pourcentGC(composition(seq)))
+    print(temp_fusion_howley(composition(seq)))
+
+    print(est_complementaire('acg', 'aca'))
