@@ -1,9 +1,10 @@
 def intervertir(dic):
     dicFinal = {}
-    dicFinal = {value : key for (key,value) in dic.items()}
-    # for item in dic.items() :
-    #
-    #     dicFinal[item[1]] = item[0]
+
+    for item in dic.items() :
+
+        dicFinal[item[1]] = item[0]
+
 
 
     return dicFinal
