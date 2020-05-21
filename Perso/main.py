@@ -1,8 +1,7 @@
-from Formes import *
-import turtle as t
-from modiflist import *
-from minmaxmoy import *
-from adn import *
+from exercice2 import *
+from exercice1 import *
+from exercice3 import *
+from exercice4 import *
 #MENU :
 choix = int(input('Entrez votre choix : 1 pour exercice 1, 2 pour exercice 2, etc... >>> '))
 
@@ -23,4 +22,9 @@ elif choix == 3 :
     print(minmaxmoy())
 
 elif choix == 4 :
-    print(composition('AAAACCCGGGTTT'))
+
+    #création d'une séquence d'adn aléatoire
+    sequence_aleatoire = create_seq(1000)
+
+    #affichage de sa composition :
+    print(composition(sequence_aleatoire))

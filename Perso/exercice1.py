@@ -18,6 +18,7 @@ def comprime(data) :
 
 
 def compte(data) :
+    """Prend une liste d'entiers en entrée, et retourne une liste sans répétitions et avec comptage des éléments répétés"""
     #initialisation des variables :
 
     wdict = {}

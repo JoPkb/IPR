@@ -6,8 +6,6 @@ def triangle_equilateral(cote, color, angle = 360/3) :
     couleur : str
     angle : par défaut 360/3, pour obtenir un triangle, ne pas le changer"""
     t.begin_poly()
-# t.fillcolor('red')
-# t.begin_fill()
     for n in range(3) :
         t.fillcolor(color)
         t.pendown()
@@ -21,6 +19,7 @@ def triangle_equilateral(cote, color, angle = 360/3) :
     return(poly)
 
 def drawstarline(longueur, nb) :
+    """Permet de dessiner les 6 traits partant du centre"""
     angle = 360/nb
     for a in range(nb) :
         t.goto(0, 0)
@@ -30,7 +29,7 @@ def drawstarline(longueur, nb) :
 
 
 def draw_figure() :
-
+    """Fonction finale pour le dessin de la figure entière."""
     t.speed(20)
     for n in range(2) :
         for i in range(3) :
@@ -42,9 +41,9 @@ def draw_figure() :
     #Dessin des 6 triangles entourant les 6 premiers.
     for a in range(6) :
         if a % 2 == 0 :
-            color = '#8267E5'
+            color = '#6e6eff'
         else :
-            color = '#DEA759'
+            color = '#ffcd00'
 
         t.begin_fill()
         triangle_equilateral(250, color)
