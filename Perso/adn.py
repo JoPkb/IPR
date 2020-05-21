@@ -76,6 +76,16 @@ def find_ORF(liste_aa) :
     print(start, stop)
     return ORF
 
+def localiser_motif_simple(seq, motif) :
+    index = [0]
+    occurence = 0
+    for i in range(len(seq)) :
+        index.append(seq(motif)[index[:-1]].index)
+
+
+
+
+
 if __name__ == '__main__' :
     a = time.time()
     #seq = 'uuuauguugcugugagccaugcuaguauaa'
