@@ -1,5 +1,6 @@
 import time
 import random
+import re
 def create_seq(length):
     """Crée une séquence d'adn aléatoire, d'une longueur donnée."""
 
@@ -15,29 +16,30 @@ def composition(sequence_adn) :
     """Prend en entrée soit une chaîne de caractères, soit une liste de nucléotides, et en compte les occurences.
     Retourne un dictionnaire"""
 
-    composition = {'a' : 0, 't' : 0, 'c' : 0, 'g' : 0}
+    composition_ = {'a' : 0, 't' : 0, 'c' : 0, 'g' : 0}
 
-    for lettre in composition :
-        composition[lettre] = sequence_adn.count(lettre)
+    for lettre in composition_ :
+        composition_[lettre] = sequence_adn.count(lettre)
 
-    return composition
+    return composition_
 
 
 
-def pourcentGC(composition) :
+def pourcentGC(composition_) :
     """Prend en entrée le dictionnaire donnant la composition d'une séquence en chaque nucléotide et renvoie le pourcentage de GC sur le total."""
 
-    pourcent = ((composition['g'] + composition['c']) / sum(composition.values())) * 100
+    somme = sum(composition_.values())
+    pourcent = ((composition_['g'] + composition_['c']) / somme) * 100
 
     return pourcent
 
 
 
-def temp_fusion_howley(composition) :
+def temp_fusion_howley(composition_) :
     """Prend en entrée le dictionnaire donnant la composition d'une séquence, et retourne la température de fusion de Howley"""
 
-    total = sum(composition.values())
-    pourcent = pourcentGC(composition)
+    total = sum(composition_.values())
+    pourcent = pourcentGC(composition_)
 
     return 67.5 + (0.34*pourcent)-(395/total)
 
@@ -46,10 +48,23 @@ def temp_fusion_howley(composition) :
 def est_complementaire(seq1, seq2):
     """Prend en entrée deux séquences, et les compare, renvoie une booléen, True si elles sont complémentaires, False sinon"""
 
+    #--------------------------#
+    #On remplace chaque nucléotide par son nucléotide complémentaire, il faut prendre une valeur temporaire pour une lettre sur deux d'un couple
+    seq2 = seq2.replace('a','x')
+    seq2 = seq2.replace('t', 'a')
+    seq2 = seq2.replace('x', 't')
+
+    seq2 = seq2.replace('g', 'x')
+    seq2 = seq2.replace('c', 'g')
+    seq2 = seq2.replace('x', 'c')
+    #---------------------------#
+
+    #On inverse le sens de la sequence, pour que les deux soient bien dans le même sens
     seq2 = list(seq2)
     seq2.reverse()
     seq2 = ''.join(seq2)
 
+    #Et on compare
     if seq1 == seq2 :
         return True
     else :
@@ -78,29 +93,25 @@ def traduction(seq) :
 
 
 
-def localiser_motif_simple(seq, motif) :
-    index = [0]
-    occurence = 0
-    for i in range(len(seq)) :
-        index.append(seq(motif)[index[:-1]].index)
+def localiser_motif_simple(seq, motif, position) :
+    index_motif = seq[position:].index(motif)
+    return index_motif
 
+def localiser_motif_RE(seq, motif, position) :
+    match = re.search(motif,seq[position:])
+    #retourne l'indice de début du motif, ainsi que le motif trouvé
+    try :
+        return(match.start(), match.group())
+    except AttributeError :
+        return('xxx', 'xxx')
 
-
-
-
-if __name__ == '__main__' :
-    a = time.time()
-    #seq = 'uuuauguugcugugagccaugcuaguauaa'
-    seq = create_seq(1000)
-    trad = traduction(seq)
-    print(trad[0],'\nlen :\n', trad[1])
-
-    print(find_ORF(trad[0]),'\n')
-    b = time.time()
-    print(b-a)
-
-    seq = 'atgagtgaacgtctgagcattaccccgctggggccgtatatcggcgca'
-    print(pourcentGC(composition(seq)))
-    print(temp_fusion_howley(composition(seq)))
-
-    print(est_complementaire('acg', 'aca'))
+def signature(sequence,taille) :
+    motifs = []
+    signature_ = {}
+    for i in range(0,len(sequence)-taille,taille) :
+        motifs.append(sequence[i:i+taille])
+    motifs.sort()
+    for mot in motifs :
+        signature_[mot] = signature_.get(mot, 0) + 1
+    return signature_
+ 
