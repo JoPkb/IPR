@@ -1,7 +1,7 @@
 
 
 def comprime(data) :
-    """prend une liste en entrée et retourne une liste sans répétitions de nombres"""
+    """prends une liste en entrée et retourne une liste sans répétitions de nombres"""
     wdict = {}
     listef = list(data)
 
@@ -18,7 +18,7 @@ def comprime(data) :
 
 
 def compte(data) :
-    """Prend une liste d'entiers en entrée, et retourne une liste sans répétitions et avec comptage des éléments répétés"""
+    """Prends une liste d'entiers en entrée, et retourne une liste sans répétitions et avec comptage des éléments répétés"""
     #initialisation des variables :
 
     wdict = {}
