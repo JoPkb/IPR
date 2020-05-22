@@ -15,7 +15,18 @@ def comprime(data) :
 
     return listef
 
+def nanana(data)
+    new_data = list(data)
+    variable_actuelle = new_data[0]
+    i = 1
+    for k in range(len(new_data)-2):
+        if new_data[k] = new_data[k+1]:
+            del(new_data[k+1])
+    return new_data
 
+    
+            
+    
 
 def compte(data) :
     """Prends une liste d'entiers en entrée, et retourne une liste sans répétitions et avec comptage des éléments répétés"""
