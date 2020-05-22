@@ -39,18 +39,18 @@ def temp_fusion_howley(composition_) :
     """Prend en entrée le dictionnaire donnant la composition d'une séquence, et retourne la température de fusion de Howley"""
 
     total = sum(composition_.values())
-    pourcent = pourcentGC(composition_)
+    pourcentGC_ = pourcentGC(composition_)
 
-    return 67.5 + (0.34*pourcent)-(395/total)
+    return 67.5 + 0.34*pourcentGC_-395/total
 
 
 
 def est_complementaire(seq1, seq2):
     """Prend en entrée deux séquences, et les compare, renvoie une booléen, True si elles sont complémentaires, False sinon"""
 
-    #--------------------------#
+    #---------------------------#
     #On remplace chaque nucléotide par son nucléotide complémentaire, il faut prendre une valeur temporaire pour une lettre sur deux d'un couple
-    seq2 = seq2.replace('a','x')
+    seq2 = seq2.replace('a', 'x')
     seq2 = seq2.replace('t', 'a')
     seq2 = seq2.replace('x', 't')
 
@@ -59,7 +59,7 @@ def est_complementaire(seq1, seq2):
     seq2 = seq2.replace('x', 'c')
     #---------------------------#
 
-    #On inverse le sens de la sequence, pour que les deux soient bien dans le même sens
+    #On inverse le sens de la sequence, pour que les deux soient bien dans le même sens$
     seq2 = list(seq2)
     seq2.reverse()
     seq2 = ''.join(seq2)
@@ -75,29 +75,27 @@ def ADN2ARN(seq):
     """Remplace les 't' d'une séquence sous forme d'un chaîne de caractères par 'u'"""
     return seq.replace('t', 'u')
 
-def traduction(seq) :
+def traduction(seq, cadre = 0) :
     "Prend une séquence d'ARN en entrée sous forme d'une chaîne de caractères, et la traduit en séquence peptidique"""
     code_genetique = {'uuu': 'F', 'ucu': 'S', 'uau': 'Y', 'ugu': 'C','uuc': 'F', 'ucc': 'S', 'uac': 'Y', 'ugc': 'C','uua': 'L', 'uca': 'S', 'uaa': '*', 'uga': '*','uug': 'L', 'ucg': 'S', 'uag': '*', 'ugg': 'W','cuu': 'L', 'ccu': 'P', 'cau': 'H', 'cgu': 'R','cuc': 'L', 'ccc': 'P', 'cac': 'H', 'cgc': 'R','cua': 'L', 'cca': 'P', 'caa': 'Q', 'cga': 'R','cug': 'L', 'ccg': 'P', 'cag': 'Q', 'cgg': 'R','auu': 'I', 'acu': 'T', 'aau': 'N', 'agu': 'S','auc': 'I', 'acc': 'T', 'aac': 'N', 'agc': 'S','aua': 'I', 'aca': 'T', 'aaa': 'K', 'aga': 'R','aug': 'M', 'acg': 'T', 'aag': 'K', 'agg': 'R','guu': 'V', 'gcu': 'A', 'gau': 'D', 'ggu': 'G','guc': 'V', 'gcc': 'A', 'gac': 'D', 'ggc': 'G','gua': 'V', 'gca': 'A', 'gaa': 'E', 'gga': 'G','gug': 'V', 'gcg': 'A', 'gag': 'E', 'ggg': 'G',}
-    aa = ''
-    cadre = 0
-
-    #if cadre != 0 and cadre != 1 and cadre != 2 :
-        #raise ValueError
-
-
+    liste_aa = ''
+    liste_genes = []
     for i in range(cadre, len(seq)-len(seq)%3, 3) :
-        aa += code_genetique[seq[i:i+3]]
+        liste_aa += code_genetique[seq[i:i+3]]
+
+    # for aa in liste_aa :
+    #     if aa == 'M' :
+    #         start =
+    return (liste_aa,len(liste_aa))
 
 
-    return (aa,len(aa))
 
 
-
-def localiser_motif_simple(seq, motif, position) :
+def localiser_motif_simple(seq, motif, position = 0) :
     index_motif = seq[position:].index(motif)
     return index_motif
 
-def localiser_motif_RE(seq, motif, position) :
+def localiser_motif_RE(seq, motif, position = 0) :
     match = re.search(motif,seq[position:])
     #retourne l'indice de début du motif, ainsi que le motif trouvé
     try :
@@ -105,13 +103,22 @@ def localiser_motif_RE(seq, motif, position) :
     except AttributeError :
         return('xxx', 'xxx')
 
-def signature(sequence,taille) :
+def signature(sequence, taille, chevauchement = True) :
     motifs = []
     signature_ = {}
-    for i in range(0,len(sequence)-taille,taille) :
+
+    if chevauchement == True :
+        pas = 1
+    else :
+        pas = taille
+
+    for i in range(0,len(sequence)-taille, pas) :
         motifs.append(sequence[i:i+taille])
+
     motifs.sort()
+
     for mot in motifs :
         signature_[mot] = signature_.get(mot, 0) + 1
+
+
     return signature_
- 

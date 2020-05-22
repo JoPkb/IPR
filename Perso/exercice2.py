@@ -30,7 +30,7 @@ def drawstarline(longueur, nb) :
 
 def draw_figure() :
     """Fonction finale pour le dessin de la figure entière."""
-    t.speed(20)
+    t.speed(20) 
     for n in range(2) :
         for i in range(3) :
             triangle_equilateral(250, 'black')

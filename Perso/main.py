@@ -26,13 +26,14 @@ elif choix == 4 :
     t_start = time.time()
 
     #création d'une séquence d'adn aléatoire
-    sequence_aleatoire = create_seq(1000)
+    sequence_aleatoire = create_seq(100000)
 
     #affichage de sa composition :
     composition_ = composition(sequence_aleatoire)
     print('composition en nucléotides de la séquence : \n',composition_ ,'\n\n')
 
     #affichage du pourcentage en GC de la séquence :
+
     pourcentage_GC = pourcentGC(composition_)
     print('Pourcentage en GC de la séquence : \n', pourcentage_GC,'\n\n')
 

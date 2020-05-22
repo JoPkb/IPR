@@ -1,56 +1,35 @@
 
 
 def comprime(data) :
-    """prends une liste en entrée et retourne une liste sans répétitions de nombres"""
-    wdict = {}
-    listef = list(data)
 
-    for index, elem in enumerate(listef) :
-        wdict[index] = elem
+    liste_copie = list(data)
+    i = 0
+    while i < len(liste_copie)-1  :
+        if liste_copie[i] == liste_copie[i+1] :
+            del(liste_copie[i+1])
+        else :
+            i+=1
+    return liste_copie
 
-    for n in range(len(wdict)-1) :
 
-        if wdict[n] == wdict[n+1] :
-            listef.remove(wdict[n])
 
-    return listef
-
-def nanana(data)
-    new_data = list(data)
-    variable_actuelle = new_data[0]
+def prime(data):
+    data = list(data)
     i = 1
-    for k in range(len(new_data)-2):
-        if new_data[k] = new_data[k+1]:
-            del(new_data[k+1])
-    return new_data
+    var = data[0]
+    compteur = 1
+    while i < len(data):
 
-    
-            
-    
+        if data[i] == var:
+            compteur+=1
+            del(data[i])
+        else:
+            data.insert(i, compteur)
+            var = data[i+1]
+            compteur = 1
 
-def compte(data) :
-    """Prends une liste d'entiers en entrée, et retourne une liste sans répétitions et avec comptage des éléments répétés"""
-    #initialisation des variables :
-
-    wdict = {}
-    cdict = {}
-    listef = []
-    listetemp = list(data)
-
-    #On crée un dictionnaire de travail (wdict) et un dictionnaire de comptage (cdict) à partir des indexs et des valeurs de la liste :
-    for index, elem in enumerate(listetemp) :
-        wdict[index] = elem
-        cdict[elem] = 1
-
-
-    for n in range(len(wdict)-1) :
-        #si on a deux valeurs adjacentes identiques, on retire cette valeur de la liste, et on incrémente le compteur de la valeur dans le dictionnaire de comptage
-        if wdict[n] == wdict[n+1] :
-            listetemp.remove(wdict[n])
-            cdict[wdict[n]] += 1
-    #On convertit le dictionnaire de comptage en une liste
-    for elem, nbr in cdict.items() :
-        listef.append(elem)
-        listef.append(nbr)
-
-    return listef
+            i+=2
+    data.append(compteur)
+    return data
+if __name__ == '__main__' :
+    print(prime([1,1,1,1,2,3,3,10,10,11,11,11]))
